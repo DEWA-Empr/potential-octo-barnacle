@@ -35,3 +35,11 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Finance App data files #
+##########################
+budget_data.json
+test_budget_data.json
+test_edge_cases.json
+example_budget.json
+*.json.bak
