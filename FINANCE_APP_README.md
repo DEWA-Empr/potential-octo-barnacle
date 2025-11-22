@@ -44,7 +44,7 @@ The Finance Budgeting App is a command-line application that enables users to:
 ## Installation
 
 ### Prerequisites
-- Python 3.6 or higher
+- Python 3.8 or higher
 
 ### Setup
 1. Clone or download the repository
