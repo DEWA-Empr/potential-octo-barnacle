@@ -8,7 +8,7 @@ A seamless finance app that helps users partition or budget their funds or salar
 import json
 import os
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 
 class BudgetCategory:
@@ -17,7 +17,7 @@ class BudgetCategory:
     def __init__(self, name: str, allocated_amount: float):
         self.name = name
         self.allocated_amount = allocated_amount
-        self.expenses: List[Dict[str, any]] = []
+        self.expenses: List[Dict[str, Any]] = []
     
     def add_expense(self, amount: float, description: str):
         """Add an expense to this category."""
