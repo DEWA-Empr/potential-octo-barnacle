@@ -11,6 +11,11 @@ from finance_app import FinanceBudgetApp, print_budget_summary
 def example_usage():
     """Demonstrate example usage of the finance app."""
     
+    # Clean up any existing example data
+    import os
+    if os.path.exists('example_budget.json'):
+        os.remove('example_budget.json')
+    
     # Create app instance with a custom data file
     app = FinanceBudgetApp('example_budget.json')
     

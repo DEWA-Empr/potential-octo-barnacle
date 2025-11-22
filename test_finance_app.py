@@ -214,6 +214,34 @@ class TestEdgeCases(unittest.TestCase):
         self.app.set_monthly_income(0.0)
         self.assertEqual(self.app.monthly_income, 0.0)
     
+    def test_negative_income(self):
+        """Test that negative income raises error."""
+        with self.assertRaises(ValueError):
+            self.app.set_monthly_income(-1000.0)
+    
+    def test_empty_category_name(self):
+        """Test that empty category name raises error."""
+        with self.assertRaises(ValueError):
+            self.app.create_category("", 100.0)
+        
+        with self.assertRaises(ValueError):
+            self.app.create_category("   ", 100.0)
+    
+    def test_negative_category_allocation(self):
+        """Test that negative allocation raises error."""
+        with self.assertRaises(ValueError):
+            self.app.create_category("Test", -100.0)
+    
+    def test_empty_expense_description(self):
+        """Test that empty description raises error."""
+        self.app.create_category("Food", 500.0)
+        
+        with self.assertRaises(ValueError):
+            self.app.add_expense("Food", 50.0, "")
+        
+        with self.assertRaises(ValueError):
+            self.app.add_expense("Food", 50.0, "   ")
+    
     def test_negative_amounts(self):
         """Test that negative amounts work (could be refunds)."""
         self.app.create_category("Utilities", 200.0)

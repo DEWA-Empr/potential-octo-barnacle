@@ -21,9 +21,12 @@ class BudgetCategory:
     
     def add_expense(self, amount: float, description: str):
         """Add an expense to this category."""
+        if not description or not description.strip():
+            raise ValueError("Expense description cannot be empty")
+        
         expense = {
             'amount': amount,
-            'description': description,
+            'description': description.strip(),
             'date': datetime.now().isoformat()
         }
         self.expenses.append(expense)
@@ -63,11 +66,20 @@ class FinanceBudgetApp:
     
     def set_monthly_income(self, income: float):
         """Set the monthly income/salary."""
+        if income < 0:
+            raise ValueError("Monthly income cannot be negative")
         self.monthly_income = income
         self.save_data()
     
     def create_category(self, name: str, allocated_amount: float):
         """Create a new budget category."""
+        if not name or not name.strip():
+            raise ValueError("Category name cannot be empty")
+        
+        if allocated_amount < 0:
+            raise ValueError("Allocated amount cannot be negative")
+        
+        name = name.strip()
         if name in self.categories:
             raise ValueError(f"Category '{name}' already exists")
         
@@ -134,8 +146,11 @@ class FinanceBudgetApp:
             'monthly_income': self.monthly_income,
             'categories': {name: cat.to_dict() for name, cat in self.categories.items()}
         }
-        with open(self.data_file, 'w') as f:
-            json.dump(data, f, indent=2)
+        try:
+            with open(self.data_file, 'w') as f:
+                json.dump(data, f, indent=2)
+        except (IOError, OSError) as e:
+            raise IOError(f"Failed to save data to {self.data_file}: {e}")
     
     def load_data(self):
         """Load budget data from file."""
