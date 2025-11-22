@@ -43,3 +43,11 @@ test_budget_data.json
 test_edge_cases.json
 example_budget.json
 *.json.bak
+
+# Python cache #
+################
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
