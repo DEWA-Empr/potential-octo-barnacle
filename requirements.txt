@@ -1,0 +1,10 @@
+# Finance Budgeting App Requirements
+# No external dependencies required - uses Python standard library only
+
+# Python version required
+python>=3.8
+
+# Development dependencies (optional)
+# pytest>=7.0.0  # For alternative testing framework
+# black>=22.0.0  # For code formatting
+# pylint>=2.12.0 # For code linting
